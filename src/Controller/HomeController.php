@@ -37,7 +37,7 @@ class HomeController extends AbstractController
      */
     public function blog()
     {
-        return $this->render('pages/Blog.html.twig', [
+        return $this->render('pages/blog/Blog.html.twig', [
           'current_menu'=>'blogs'
         ]);
     }
