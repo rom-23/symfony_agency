@@ -25,7 +25,7 @@ class HomeController extends AbstractController
      */
     public function agency(PropertyRepository $repository): Response
     {
-        $properties = $repository->findAll();
+        $properties = $repository->findLatest();
         return $this->render('pages/Agency.html.twig', [
             'agencies' => $properties,
             'current_menu'=>'agencies'
