@@ -46,7 +46,7 @@ class PropertyController extends AbstractController
             $request->query->getInt('page', 1),
             12
         );
-        return $this->render('pages/index.html.twig', [
+        return $this->render('pages/agency/index.html.twig', [
           'pagination'=> $paginator,
           'properties' => $properties,
           'form' => $form->createView()
@@ -66,7 +66,7 @@ class PropertyController extends AbstractController
             'slug'=> $property->getSlug()
           ], 301);
         }
-        return $this->render('pages/Show.html.twig', [
+        return $this->render('pages/agency/Show.html.twig', [
           'property' => $property
         ]);
     }

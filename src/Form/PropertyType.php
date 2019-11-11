@@ -3,10 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Property;
+use App\Entity\Option;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PropertyType extends AbstractType
 {
@@ -14,19 +16,17 @@ class PropertyType extends AbstractType
     {
         $builder
             ->add('title')
-    //         ->add('surface', ChoiceType::class, [
-    //           'choices'  => [
-    //     'Maybe' => null,
-    //     'Yes' => true,
-    //     'No' => false,
-    // ],
-    //         ])
             ->add('description')
             ->add('surface')
             ->add('rooms')
             ->add('bedrooms')
             ->add('floor')
             ->add('price')
+            ->add('options', EntityType::class, [
+              'class' => Option::class,
+              'choice_label' => 'name',
+              'multiple' => true
+            ])
             ->add('city')
             ->add('address')
             ->add('postal_code')
