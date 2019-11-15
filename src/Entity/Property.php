@@ -8,10 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  * @UniqueEntity("title")
+ * @Vich\Uploadable
  */
 class Property
 {
@@ -23,9 +27,22 @@ class Property
     private $id;
 
     /**
-     * @Assert\Length(min=5,max=255)
-     * @ORM\Column(type="string", length=255)
-     */
+    * @var string|null
+    * @ORM\Column(type="string", length=255)
+    */
+    private $filename;
+
+    /**
+    * @var File|null
+    * @Assert\Image(mimeTypes="image/jpeg")
+    * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
+    */
+    private $imageFile;
+
+    /**
+         * @Assert\Length(min=5,max=255)
+         * @ORM\Column(type="string", length=255)
+         */
     private $title;
 
     /**
@@ -91,16 +108,11 @@ class Property
      */
     private $options;
 
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-        $this->options = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getTitle(): ?string
     {
@@ -280,6 +292,97 @@ class Property
             $this->options->removeElement($option);
             $option->removeProperty($this);
         }
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Filename
+     *
+     * @return string|null
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Get the value of Image File
+     *
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param null|string $filename
+     * @return Property
+     */
+    public function setFilename(?string $filename): Property
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    /**
+     *
+     * @param null|File $imageFile
+     * @return Property
+     */
+    public function setImageFile(?File $imageFile): Property
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Set the value of Options
+     *
+     * @param mixed $options
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

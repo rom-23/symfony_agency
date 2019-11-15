@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\PropertyRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\PropertyRepository;
 
 class HomeController extends AbstractController
 {
@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      */
     public function home()
     {
-        return $this->render('pages/Home.html.twig');
+        return $this -> render('pages/Home.html.twig');
     }
 
     /**
@@ -25,10 +25,10 @@ class HomeController extends AbstractController
      */
     public function agency(PropertyRepository $repository): Response
     {
-        $properties = $repository->findLatest();
-        return $this->render('pages/agency/Agency.html.twig', [
-            'agencies' => $properties,
-            'current_menu'=>'agencies'
+        $properties = $repository -> findLatest();
+        return $this -> render('pages/agency/Agency.html.twig', [
+            'agencies'     => $properties,
+            'current_menu' => 'agencies'
         ]);
     }
 
@@ -37,8 +37,8 @@ class HomeController extends AbstractController
      */
     public function blog()
     {
-        return $this->render('pages/blog/Blog.html.twig', [
-          'current_menu'=>'blogs'
+        return $this -> render('pages/blog/Blog.html.twig', [
+            'current_menu' => 'blogs'
         ]);
     }
 }

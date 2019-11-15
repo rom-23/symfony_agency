@@ -20,6 +20,7 @@ class PropertyController extends AbstractController
      * @var PropertyRepository
      */
     private $repository;
+
     /**
      * @var ObjectManager
      */
@@ -27,8 +28,8 @@ class PropertyController extends AbstractController
 
     public function __construct(PropertyRepository $repository, ObjectManager $em)
     {
-        $this->repository = $repository;
-        $this->em = $em;
+        $this -> repository = $repository;
+        $this -> em = $em;
     }
 
     /**
@@ -38,18 +39,18 @@ class PropertyController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $search = new PropertySearch();
-        $form = $this->createForm(PropertySearchType::class, $search);
-        $form->handleRequest($request);
+        $form = $this -> createForm(PropertySearchType::class, $search);
+        $form -> handleRequest($request);
 
-        $properties = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
-            $request->query->getInt('page', 1),
+        $properties = $paginator -> paginate(
+            $this -> repository -> findAllVisibleQuery($search),
+            $request -> query -> getInt('page', 1),
             12
         );
-        return $this->render('pages/agency/index.html.twig', [
-          'pagination'=> $paginator,
-          'properties' => $properties,
-          'form' => $form->createView()
+        return $this -> render('pages/agency/index.html.twig', [
+            'pagination' => $paginator,
+            'properties' => $properties,
+            'form'       => $form -> createView()
         ]);
     }
 
@@ -60,14 +61,14 @@ class PropertyController extends AbstractController
      */
     public function show(Property $property, string $slug): Response
     {
-        if ($property->getSlug() !== $slug) {
-            return $this->redirectToRoute('property.show', [
-            'id'=> $property->getId(),
-            'slug'=> $property->getSlug()
-          ], 301);
+        if ($property -> getSlug() !== $slug) {
+            return $this -> redirectToRoute('property.show', [
+                'id'   => $property -> getId(),
+                'slug' => $property -> getSlug()
+            ], 301);
         }
-        return $this->render('pages/agency/Show.html.twig', [
-          'property' => $property
+        return $this -> render('pages/agency/Show.html.twig', [
+            'property' => $property
         ]);
     }
 }
