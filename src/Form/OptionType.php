@@ -9,18 +9,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OptionType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm( FormBuilderInterface $builder, array $options )
     {
         $builder
-            ->add('name')
-
-        ;
+            -> add( 'name' );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions( OptionsResolver $resolver )
     {
-        $resolver->setDefaults([
+        $resolver -> setDefaults( [
             'data_class' => Option::class,
-        ]);
+        ] );
     }
 }

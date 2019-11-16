@@ -31,22 +31,22 @@ class Option
 
     public function __construct()
     {
-        $this->properties = new ArrayCollection();
+        $this -> properties = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this -> id;
     }
 
     public function getName(): ?string
     {
-        return $this->name;
+        return $this -> name;
     }
 
-    public function setName(string $name): self
+    public function setName( string $name ): self
     {
-        $this->name = $name;
+        $this -> name = $name;
 
         return $this;
     }
@@ -56,22 +56,22 @@ class Option
      */
     public function getProperties(): Collection
     {
-        return $this->properties;
+        return $this -> properties;
     }
 
-    public function addProperty(Property $property): self
+    public function addProperty( Property $property ): self
     {
-        if (!$this->properties->contains($property)) {
-            $this->properties[] = $property;
+        if(!$this -> properties -> contains( $property )) {
+            $this -> properties[] = $property;
         }
 
         return $this;
     }
 
-    public function removeProperty(Property $property): self
+    public function removeProperty( Property $property ): self
     {
-        if ($this->properties->contains($property)) {
-            $this->properties->removeElement($property);
+        if($this -> properties -> contains( $property )) {
+            $this -> properties -> removeElement( $property );
         }
 
         return $this;

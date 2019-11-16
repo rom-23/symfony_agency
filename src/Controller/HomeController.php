@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      */
     public function home()
     {
-        return $this -> render('pages/Home.html.twig');
+        return $this -> render( 'pages/Home.html.twig' );
     }
 
     /**
@@ -23,13 +23,13 @@ class HomeController extends AbstractController
      * @param PropertyRepository $repository
      * @return Response
      */
-    public function agency(PropertyRepository $repository): Response
+    public function agency( PropertyRepository $repository ): Response
     {
         $properties = $repository -> findLatest();
-        return $this -> render('pages/agency/Agency.html.twig', [
+        return $this -> render( 'pages/agency/Agency.html.twig', [
             'agencies'     => $properties,
             'current_menu' => 'agencies'
-        ]);
+        ] );
     }
 
     /**
@@ -37,8 +37,8 @@ class HomeController extends AbstractController
      */
     public function blog()
     {
-        return $this -> render('pages/blog/Blog.html.twig', [
+        return $this -> render( 'pages/blog/Blog.html.twig', [
             'current_menu' => 'blogs'
-        ]);
+        ] );
     }
 }

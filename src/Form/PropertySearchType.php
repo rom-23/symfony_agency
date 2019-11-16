@@ -13,46 +13,44 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PropertySearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm( FormBuilderInterface $builder, array $options )
     {
         $builder
-
-            ->add('minSurface', IntegerType::class, [
-              'required'=> false,
-              'label'=> false,
-              'attr'=> [
-                'placeholder'=> 'Surface minimale'
-              ]
-            ])
-
-            ->add('maxPrice', IntegerType::class, [
-              'required'=> false,
-              'label'=> false,
-              'attr'=> [
-                'placeholder'=> 'Budget maximal'
-              ]
-            ])
+            -> add( 'minSurface', IntegerType::class, [
+                'required' => false,
+                'label'    => false,
+                'attr'     => [
+                    'placeholder' => 'Surface minimale'
+                ]
+            ] )
+            -> add( 'maxPrice', IntegerType::class, [
+                'required' => false,
+                'label'    => false,
+                'attr'     => [
+                    'placeholder' => 'Budget maximal'
+                ]
+            ] )
             // ->add('submit', SubmitType::class, [
             //   'label'=> 'Rechercher'
             // ])
-            ->add('options', EntityType::class, [
-              'required'  => false,
-              'label' => false,
-              'class' => Option::class,
-              'choice_label' => 'name',
-              'multiple' => true
-            ])
-        ;
+            -> add( 'options', EntityType::class, [
+                'required'     => false,
+                'label'        => false,
+                'class'        => Option::class,
+                'choice_label' => 'name',
+                'multiple'     => true
+            ] );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions( OptionsResolver $resolver )
     {
-        $resolver->setDefaults([
-            'data_class' => PropertySearch::class,
-            'method' => 'get',
+        $resolver -> setDefaults( [
+            'data_class'      => PropertySearch::class,
+            'method'          => 'get',
             'csrf_protection' => false
-        ]);
+        ] );
     }
+
     public function getBlockPrefix()
     {
         return '';

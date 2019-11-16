@@ -13,37 +13,36 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PropertyType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm( FormBuilderInterface $builder, array $options )
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('surface')
-            ->add('rooms')
-            ->add('bedrooms')
-            ->add('floor')
-            ->add('price')
-            ->add('options', EntityType::class, [
-              'class' => Option::class,
-              'required'=> false,
-              'choice_label' => 'name',
-              'multiple' => true
-            ])
-            ->add('imageFile', FileType::class, [
-              'required' => false
-            ])
-            ->add('city')
-            ->add('address')
-            ->add('postal_code')
-            ->add('sold')
-            ->add('createdAt')
-        ;
+            -> add( 'title' )
+            -> add( 'description' )
+            -> add( 'surface' )
+            -> add( 'rooms' )
+            -> add( 'bedrooms' )
+            -> add( 'floor' )
+            -> add( 'price' )
+            -> add( 'options', EntityType::class, [
+                'class'        => Option::class,
+                'required'     => false,
+                'choice_label' => 'name',
+                'multiple'     => true
+            ] )
+            -> add( 'imageFile', FileType::class, [
+                'required' => false
+            ] )
+            -> add( 'city' )
+            -> add( 'address' )
+            -> add( 'postal_code' )
+            -> add( 'sold' )
+            -> add( 'createdAt' );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions( OptionsResolver $resolver )
     {
-        $resolver->setDefaults([
+        $resolver -> setDefaults( [
             'data_class' => Property::class,
-        ]);
+        ] );
     }
 }

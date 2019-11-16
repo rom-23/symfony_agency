@@ -15,54 +15,54 @@ use App\Entity\PropertySearch;
  */
 class PropertyRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct( ManagerRegistry $registry )
     {
-        parent::__construct($registry, Property::class);
+        parent ::__construct( $registry, Property::class );
     }
 
 
-    public function findAllVisibleQuery(PropertySearch $search)
+    public function findAllVisibleQuery( PropertySearch $search )
     {
-        $query = $this->findVisibleQuery();
+        $query = $this -> findVisibleQuery();
 
-        if ($search->getMaxPrice()) {
+        if($search -> getMaxPrice()) {
             $query = $query
-          ->andWhere('p.price <= :maxprice')
-          ->setParameter('maxprice', $search->getMaxPrice());
+                -> andWhere( 'p.price <= :maxprice' )
+                -> setParameter( 'maxprice', $search -> getMaxPrice() );
         }
-        if ($search->getMinSurface()) {
+        if($search -> getMinSurface()) {
             $query = $query
-          ->andWhere('p.surface >= :minsurface')
-          ->setParameter('minsurface', $search->getMinSurface());
+                -> andWhere( 'p.surface >= :minsurface' )
+                -> setParameter( 'minsurface', $search -> getMinSurface() );
         }
-        if ($search->getOptions()->count() > 0) {
+        if($search -> getOptions() -> count() > 0) {
             $k = 0;
-            foreach ($search->getOptions() as $option) {
+            foreach ($search -> getOptions() as $option) {
                 $k++;
                 $query = $query
-            ->andWhere(":option$k MEMBER OF p.options")
-            ->setParameter("option$k", $option);
+                    -> andWhere( ":option$k MEMBER OF p.options" )
+                    -> setParameter( "option$k", $option );
             }
         }
 
-        return $query->getQuery();
+        return $query -> getQuery();
     }
 
     /**
-    * @return Property[] Returns an array of Last Property objects
-    */
+     * @return Property[] Returns an array of Last Property objects
+     */
     public function findLatest(): array
     {
-        return $this->findVisibleQuery()
-                ->setMaxResults(4)
-                ->getQuery()
-                ->getResult();
+        return $this -> findVisibleQuery()
+            -> setMaxResults( 4 )
+            -> getQuery()
+            -> getResult();
     }
 
 
     private function findVisibleQuery()
     {
-        return $this->createQueryBuilder('p')
-                ->where('p.sold = false');
+        return $this -> createQueryBuilder( 'p' )
+            -> where( 'p.sold = false' );
     }
 }

@@ -15,8 +15,8 @@ class DevHomeController extends AbstractController
      */
     public function devhome()
     {
-        return $this->render('pages/development/DevHome.html.twig', [
-          'current_menu'=>'developments'
-        ]);
+        return $this -> render( 'pages/development/DevHome.html.twig', [
+            'current_menu' => 'developments'
+        ] );
     }
 }

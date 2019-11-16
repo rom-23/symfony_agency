@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Asserts;
@@ -7,9 +8,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 class PropertySearch
 {
 
-/**
- * @var int|null
- */
+    /**
+     * @var int|null
+     */
     private $maxPrice;
 
     /**
@@ -25,7 +26,7 @@ class PropertySearch
 
     public function __construct()
     {
-        $this->options = new ArrayCollection();
+        $this -> options = new ArrayCollection();
     }
 
     /**
@@ -34,7 +35,7 @@ class PropertySearch
      */
     public function getMaxPrice(): ?int
     {
-        return $this->maxPrice;
+        return $this -> maxPrice;
     }
 
     /**
@@ -43,7 +44,7 @@ class PropertySearch
      */
     public function getMinSurface(): ?int
     {
-        return $this->minSurface;
+        return $this -> minSurface;
     }
 
 
@@ -53,9 +54,9 @@ class PropertySearch
      * @return PropertySearch
      *
      */
-    public function setMaxPrice(int $maxPrice): PropertySearch
+    public function setMaxPrice( int $maxPrice ): PropertySearch
     {
-        $this->maxPrice = $maxPrice;
+        $this -> maxPrice = $maxPrice;
         return $this;
     }
 
@@ -64,9 +65,9 @@ class PropertySearch
      * @param int|null $minSurface
      * @return PropertySearch
      */
-    public function setMinSurface(int $minSurface): PropertySearch
+    public function setMinSurface( int $minSurface ): PropertySearch
     {
-        $this->minSurface = $minSurface;
+        $this -> minSurface = $minSurface;
 
         return $this;
     }
@@ -77,7 +78,7 @@ class PropertySearch
      */
     public function getOptions(): ArrayCollection
     {
-        return $this->options;
+        return $this -> options;
     }
 
 
@@ -86,8 +87,8 @@ class PropertySearch
      * @param ArrayCollection $options
      *
      */
-    public function setOptions(ArrayCollection $options): void
+    public function setOptions( ArrayCollection $options ): void
     {
-        $this->options = $options;
+        $this -> options = $options;
     }
 }

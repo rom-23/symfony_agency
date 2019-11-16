@@ -27,22 +27,22 @@ class Property
     private $id;
 
     /**
-    * @var string|null
-    * @ORM\Column(type="string", length=255)
-    */
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
     private $filename;
 
     /**
-    * @var File|null
-    * @Assert\Image(mimeTypes="image/jpeg")
-    * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
-    */
+     * @var File|null
+     * @Assert\Image(mimeTypes="image/jpeg")
+     * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
+     */
     private $imageFile;
 
     /**
-         * @Assert\Length(min=5,max=255)
-         * @ORM\Column(type="string", length=255)
-         */
+     * @Assert\Length(min=5,max=255)
+     * @ORM\Column(type="string", length=255)
+     */
     private $title;
 
     /**
@@ -58,7 +58,7 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
-    */
+     */
     private $rooms;
 
     /**
@@ -113,89 +113,96 @@ class Property
      */
     private $updated_at;
 
+    public function __construct()
+    {
+        $this -> createdAt = new \DateTime();
+        $this -> options = new ArrayCollection();
+    }
 
     public function getTitle(): ?string
     {
-        return $this->title;
+        return $this -> title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle( string $title ): self
     {
-        $this->title = $title;
+        $this -> title = $title;
         return $this;
     }
+
     public function getSlug(): string
     {
-        return (new Slugify())->slugify($this->title);
-    }
-    public function getDescription(): ?string
-    {
-        return $this->description;
+        return (new Slugify()) -> slugify( $this -> title );
     }
 
-    public function setDescription(?string $description): self
+    public function getDescription(): ?string
     {
-        $this->description = $description;
+        return $this -> description;
+    }
+
+    public function setDescription( ?string $description ): self
+    {
+        $this -> description = $description;
 
         return $this;
     }
 
     public function getSurface(): ?int
     {
-        return $this->surface;
+        return $this -> surface;
     }
 
-    public function setSurface(int $surface): self
+    public function setSurface( int $surface ): self
     {
-        $this->surface = $surface;
+        $this -> surface = $surface;
 
         return $this;
     }
 
     public function getRooms(): ?int
     {
-        return $this->rooms;
+        return $this -> rooms;
     }
 
-    public function setRooms(int $rooms): self
+    public function setRooms( int $rooms ): self
     {
-        $this->rooms = $rooms;
+        $this -> rooms = $rooms;
 
         return $this;
     }
 
     public function getBedrooms(): ?int
     {
-        return $this->bedrooms;
+        return $this -> bedrooms;
     }
 
-    public function setBedrooms(int $bedrooms): self
+    public function setBedrooms( int $bedrooms ): self
     {
-        $this->bedrooms = $bedrooms;
+        $this -> bedrooms = $bedrooms;
 
         return $this;
     }
 
     public function getFloor(): ?int
     {
-        return $this->floor;
+        return $this -> floor;
     }
 
-    public function setFloor(int $floor): self
+    public function setFloor( int $floor ): self
     {
-        $this->floor = $floor;
+        $this -> floor = $floor;
 
         return $this;
     }
 
     public function getPrice(): ?int
     {
-        return $this->price;
+        return $this -> price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice( int $price ): self
     {
-        $this->price = $price;
+        $this -> price = $price;
 
         return $this;
     }
@@ -203,67 +210,66 @@ class Property
 
     public function getFormattedPrice(): string
     {
-        return number_format($this->price, 0, '', ' ');
+        return number_format( $this -> price, 0, '', ' ' );
     }
-
 
 
     public function getCity(): ?string
     {
-        return $this->city;
+        return $this -> city;
     }
 
-    public function setCity(string $city): self
+    public function setCity( string $city ): self
     {
-        $this->city = $city;
+        $this -> city = $city;
 
         return $this;
     }
 
     public function getAddress(): ?string
     {
-        return $this->address;
+        return $this -> address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress( string $address ): self
     {
-        $this->address = $address;
+        $this -> address = $address;
 
         return $this;
     }
 
     public function getPostalCode(): ?string
     {
-        return $this->postal_code;
+        return $this -> postal_code;
     }
 
-    public function setPostalCode(string $postal_code): self
+    public function setPostalCode( string $postal_code ): self
     {
-        $this->postal_code = $postal_code;
+        $this -> postal_code = $postal_code;
 
         return $this;
     }
 
     public function getSold(): ?bool
     {
-        return $this->sold;
+        return $this -> sold;
     }
 
-    public function setSold(bool $sold): self
+    public function setSold( bool $sold ): self
     {
-        $this->sold = $sold;
+        $this -> sold = $sold;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this -> createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt( \DateTimeInterface $createdAt ): self
     {
-        $this->createdAt = $createdAt;
+        $this -> createdAt = $createdAt;
 
         return $this;
     }
@@ -273,24 +279,24 @@ class Property
      */
     public function getOptions(): Collection
     {
-        return $this->options;
+        return $this -> options;
     }
 
-    public function addOption(Option $option): self
+    public function addOption( Option $option ): self
     {
-        if (!$this->options->contains($option)) {
-            $this->options[] = $option;
-            $option->addProperty($this);
+        if(!$this -> options -> contains( $option )) {
+            $this -> options[] = $option;
+            $option -> addProperty( $this );
         }
 
         return $this;
     }
 
-    public function removeOption(Option $option): self
+    public function removeOption( Option $option ): self
     {
-        if ($this->options->contains($option)) {
-            $this->options->removeElement($option);
-            $option->removeProperty($this);
+        if($this -> options -> contains( $option )) {
+            $this -> options -> removeElement( $option );
+            $option -> removeProperty( $this );
         }
 
         return $this;
@@ -304,7 +310,7 @@ class Property
      */
     public function getFilename()
     {
-        return $this->filename;
+        return $this -> filename;
     }
 
     /**
@@ -314,17 +320,16 @@ class Property
      */
     public function getImageFile()
     {
-        return $this->imageFile;
+        return $this -> imageFile;
     }
-
 
 
     /**
      * Set the value of Id
      */
-    public function setId($id)
+    public function setId( $id )
     {
-        $this->id = $id;
+        $this -> id = $id;
 
         return $this;
     }
@@ -333,9 +338,9 @@ class Property
      * @param null|string $filename
      * @return Property
      */
-    public function setFilename(?string $filename): Property
+    public function setFilename( ?string $filename ): Property
     {
-        $this->filename = $filename;
+        $this -> filename = $filename;
         return $this;
     }
 
@@ -344,11 +349,11 @@ class Property
      * @param null|File $imageFile
      * @return Property
      */
-    public function setImageFile(?File $imageFile): Property
+    public function setImageFile( ?File $imageFile ): Property
     {
-        $this->imageFile = $imageFile;
-        if ($this->imageFile instanceof UploadedFile) {
-            $this->updated_at = new \DateTime('now');
+        $this -> imageFile = $imageFile;
+        if($this -> imageFile instanceof UploadedFile) {
+            $this -> updated_at = new \DateTime( 'now' );
         }
         return $this;
     }
@@ -356,13 +361,12 @@ class Property
     /**
      * Set the value of Options
      *
-     * @param mixed $options
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setOptions( $options )
     {
-        $this->options = $options;
+        $this -> options = $options;
 
         return $this;
     }
@@ -372,17 +376,17 @@ class Property
      */
     public function getId()
     {
-        return $this->id;
+        return $this -> id;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this -> updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt( \DateTimeInterface $updated_at ): self
     {
-        $this->updated_at = $updated_at;
+        $this -> updated_at = $updated_at;
 
         return $this;
     }

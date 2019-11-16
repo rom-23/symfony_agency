@@ -29,29 +29,29 @@ class User implements UserInterface, \Serializable
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this -> id;
     }
 
     public function getUsername(): ?string
     {
-        return $this->username;
+        return $this -> username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername( string $username ): self
     {
-        $this->username = $username;
+        $this -> username = $username;
 
         return $this;
     }
 
     public function getPassword(): ?string
     {
-        return $this->password;
+        return $this -> password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword( string $password ): self
     {
-        $this->password = $password;
+        $this -> password = $password;
 
         return $this;
     }
@@ -60,27 +60,31 @@ class User implements UserInterface, \Serializable
     {
         return ['ROLE_ADMIN'];
     }
+
     public function getSalt()
     {
         return null;
     }
+
     public function eraseCredentials()
     {
     }
+
     public function serialize()
     {
-        return serialize([
-      $this->id,
-      $this->username,
-      $this->password
-    ]);
+        return serialize( [
+            $this -> id,
+            $this -> username,
+            $this -> password
+        ] );
     }
-    public function unserialize($serialized)
+
+    public function unserialize( $serialized )
     {
         list(
-        $this->id,
-        $this->username,
-        $this->password
-        ) = unserialize($serialized, ['allowed_classes' => false]);
+            $this -> id,
+            $this -> username,
+            $this -> password
+            ) = unserialize( $serialized, ['allowed_classes' => false] );
     }
 }
