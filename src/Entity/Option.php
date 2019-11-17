@@ -29,6 +29,9 @@ class Option
      */
     private $properties;
 
+    /**
+     * Option constructor.
+     */
     public function __construct()
     {
         $this -> properties = new ArrayCollection();

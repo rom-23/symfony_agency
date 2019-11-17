@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -113,6 +114,10 @@ class Property
      */
     private $updated_at;
 
+    /**
+     * Property constructor.
+     * @throws Exception
+     */
     public function __construct()
     {
         $this -> createdAt = new \DateTime();

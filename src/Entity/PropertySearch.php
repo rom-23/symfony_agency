@@ -24,6 +24,9 @@ class PropertySearch
      */
     private $options;
 
+    /**
+     * PropertySearch constructor.
+     */
     public function __construct()
     {
         $this -> options = new ArrayCollection();

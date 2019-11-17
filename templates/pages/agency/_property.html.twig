@@ -1,22 +1,24 @@
 <div class="card mb-4">
-  {% if property.filename %}
-    <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('my_thumb') }}" alt="card-img-top" style="width:100%;height:auto;">
-  {% else %}
-    <img src="{{ '/images/properties/empty.jpg' | imagine_filter('my_thumb') }}" alt="card-img-top" style="width:100%;height:auto;">
+    {% if property.filename %}
+        <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('my_thumb') }}" alt="card-img-top"
+             style="width:100%;height:auto;">
+    {% else %}
+        <img src="{{ '/images/properties/empty.jpg' | imagine_filter('my_thumb') }}" alt="card-img-top"
+             style="width:100%;height:auto;">
 
-  {% endif %}
-  <div class="card-body">
+    {% endif %}
+    <div class="card-body">
 
-    <h5 class="card-title">
-      <a href="{{ path('property.show', {id:property.id, slug:property.slug}) }}">{{property.title}}</a>
-    </h5>
-    <!-- <p class="card-text">{{ property.description | nl2br }}</p> -->
-    <p class="card-text">{{ property.surface }}
-      m2 -
-      {{ property.city }}
-      ({{property.postalCode}})</p>
-    <p class="card-text text-primary">{{property.formattedPrice}}
-      $</p>
-    <a href="#" class="btn btn-primary">Read</a>
-  </div>
+        <h5 class="card-title">
+            <a href="{{ path('property.show', {id:property.id, slug:property.slug}) }}">{{ property.title }}</a>
+        </h5>
+        <!-- <p class="card-text">{{ property.description | nl2br }}</p> -->
+        <p class="card-text">{{ property.surface }}
+            m2 -
+            {{ property.city }}
+            ({{ property.postalCode }})</p>
+        <p class="card-text text-primary">{{ property.formattedPrice }}
+            $</p>
+        <a href="#" class="btn btn-primary">Read</a>
+    </div>
 </div>

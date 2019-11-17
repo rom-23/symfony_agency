@@ -13,6 +13,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PropertySearchType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
         $builder

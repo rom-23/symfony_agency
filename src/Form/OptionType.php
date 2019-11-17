@@ -9,6 +9,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OptionType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
         $builder
