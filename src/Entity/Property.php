@@ -29,7 +29,7 @@ class Property
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true))
      */
     private $filename;
 
@@ -121,6 +121,7 @@ class Property
     public function __construct()
     {
         $this -> createdAt = new \DateTime();
+        $this -> updated_at = new \DateTime();
         $this -> options = new ArrayCollection();
     }
 
