@@ -23,6 +23,5 @@ npm-debug.log
 yarn-error.log
 .rsyncignore
 .gitignore
-composer.lock
 
 
