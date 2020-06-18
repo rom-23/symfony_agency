@@ -24,8 +24,10 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addStyleEntry('mainstyle', './assets/css/app.css')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -67,7 +69,8 @@ Encore
         jquery: 'jQuery'
     })
     // uncomment if you're having problems with a jQuery plugin
-    .autoProvidejQuery();
+    .autoProvidejQuery()
+    .enableVueLoader();
 
 // uncomment if you use API Platform Admin (composer req api-admin)
 //.enableReactPreset()
@@ -75,4 +78,5 @@ Encore
 
 
 const config = Encore.getWebpackConfig();
+config.externals.jquery = 'jQuery';
 module.exports = config;

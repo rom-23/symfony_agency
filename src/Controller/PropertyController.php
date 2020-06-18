@@ -55,7 +55,7 @@ class PropertyController extends AbstractController
         $properties = $paginator -> paginate(
             $this -> repository -> findAllVisibleQuery( $search ),
             $request -> query -> getInt( 'page', 1 ),
-            12
+            6
         );
         return $this -> render( 'pages/agency/index.html.twig', [
             'pagination' => $paginator,
@@ -95,7 +95,7 @@ class PropertyController extends AbstractController
              ] );
         }
 
-        return $this -> render( 'pages/agency/Show.html.twig', [
+        return $this -> render( 'pages/agency/property-details.html.twig', [
             'property' => $property,
             'form'     => $form -> createView()
         ] );

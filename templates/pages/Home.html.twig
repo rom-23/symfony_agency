@@ -1,196 +1,534 @@
 {% extends 'base.html.twig' %}
 {% block title %}HOME
 {% endblock %}
-{% block stylesheets %}
-    <link href="/assets/creative.css" rel="stylesheet">
-{% endblock %}
+
 {% block body %}
-    <!-- Masthead -->
-    <header class="masthead">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-10 align-self-end">
-                    <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap
-                        Themes</h1>
-                    <hr class="divider my-4">
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites
-                        using the Bootstrap framework! Just download a theme and start customizing, no strings
-                        attached!</p>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="nav-logo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="logo">
+                            <span>WEB-IMMO .co</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="nav-logo-right">
+                            <ul>
+                                <li>
+                                    <i class="icon_phone"></i>
+                                    <div class="info-text">
+                                        <span>Phone:</span>
+                                        <p>(+12) 345 6789</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="icon_map"></i>
+                                    <div class="info-text">
+                                        <span>Address:</span>
+                                        <p>16 Creek Ave, <span>NY</span></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="icon_mail"></i>
+                                    <div class="info-text">
+                                        <span>Email:</span>
+                                        <p>Info.cololib@gmail.com</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+    <!-- Header End -->
 
-    <!-- About Section -->
-    <section class="page-section bg-primary" id="about">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">We've got what you need!</h2>
-                    <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and
-                        running in no time! Choose one of our open source, free to download, and easy to use themes! No
-                        strings attached!</p>
-                    <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            {% for property in agencies %}
+            <div class="single-hero-item set-bg" data-setbg="{{ asset('images/properties/'~ property.filename) }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                            <div class="hero-text">
+                                <p class="room-location"><i class="icon_pin"></i>{{ property.address }}</p>
+                                <h2>{{ property.city }}</h2>
+                                <div class="room-price">
+                                    <span>Start Form:</span>
+                                    <p>${{ property.formattedPrice }}</p>
+                                </div>
+                                <ul class="room-features">
+                                    <li>
+                                        <i class="fa fa-arrows"></i>
+                                        <p>{{ property.rooms }}</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-bed"></i>
+                                        <p>{{ property.bedrooms }}</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-bath"></i>
+                                        <p>{{ property.surface }}</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-building"></i>
+                                        <p>{{ property.floor }}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endfor %}
+        </div>
+        <div class="thumbnail-pic">
+            <div class="thumbs owl-carousel">
+                <div class="item">
+                    <img src="{{ asset('img/hero/dot-1.jpg') }}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{{ asset('img/hero/dot-2.jpg') }}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{{ asset('img/hero/dot-3.jpg') }}" alt="">
                 </div>
             </div>
         </div>
     </section>
-    <!-- Services Section -->
-    <section class="page-section" id="services">
+    <!-- Hero Section End -->
+
+    <!-- How It Works Section Begin -->
+    <section class="howit-works spad">
         <div class="container">
-            <h2 class="text-center mt-0">At Your Service</h2>
-            <hr class="divider my-4">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <h3 class="h4 mb-2">Sturdy Themes</h3>
-                        <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Find Your Dream House</span>
+                        <h2>How It Work</h2>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <h3 class="h4 mb-2">Up to Date</h3>
-                        <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <h3 class="h4 mb-2">Ready to Publish</h3>
-                        <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <h3 class="h4 mb-2">Made with Love</h3>
-                        <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters">
-                <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="project-category text-white-50">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="project-category text-white-50">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="project-category text-white-50">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="project-category text-white-50">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="project-category text-white-50">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-                        <div class="portfolio-box-caption p-3">
-                            <div class="project-category text-white-50">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Call to Action Section -->
-    <section class="page-section bg-dark text-white">
-        <div class="container text-center">
-            <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-            <a class="btn btn-light btn-xl" href="#">Download Now!</a>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section class="page-section" id="contact">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="mt-0">Let's Get In Touch!</h2>
-                    <hr class="divider my-4">
-                    <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an
-                        email and we will get back to you as soon as possible!</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-                    <div>+1 (202) 555-0149</div>
+                <div class="col-lg-4">
+                    <div class="single-howit-works">
+                        <img src="{{ asset('img/howit-works/howit-works-1.png') }}" alt="">
+                        <h4>Search & Find Apertment</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore.</p>
+                    </div>
                 </div>
-                <div class="col-lg-4 mr-auto text-center">
-                    <!-- Make sure to change the email address in anchor text AND the link below! -->
-                    <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+                <div class="col-lg-4">
+                    <div class="single-howit-works">
+                        <img src="{{ asset('img/howit-works/howit-works-2.png') }}" alt="">
+                        <h4>Find Your Room</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-howit-works">
+                        <img src="{{ asset('img/howit-works/howit-works-3.png') }}" alt="">
+                        <h4>Talk To Agent</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Footer -->
-    <footer class="bg-light py-5">
+    <!-- How It Works Section End -->
+
+    <!-- Feature Section Begin -->
+    <section class="feature-section spad">
         <div class="container">
-            <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Listing From Our Agents</span>
+                        <h2>Featured Properties</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="feature-carousel owl-carousel">
+                    {% for property in agencies %}
+                        <div class="col-lg-12">
+                            <div class="feature-item">
+                                <div class="fi-pic set-bg" data-setbg="{{ asset('images/properties/'~ property.filename) }}">
+                                    <div class="pic-tag">
+                                        <div class="f-text">feauture</div>
+                                        <div class="s-text">For Sale</div>
+                                    </div>
+                                    <div class="feature-author">
+                                        <div class="fa-pic">
+                                            {% if property.filename %}
+                                                <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}"
+                                                     alt="card-img-top">
+                                            {% else %}
+                                                <img src="{{ '/images/properties/empty.jpg' | imagine_filter('medium') }}"
+                                                     alt="card-img-top">
+                                            {% endif %}
+                                        </div>
+                                        <div class="fa-text">
+                                            <span>Rena Simmons</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fi-text">
+                                    <div class="inside-text">
+                                        <h4>{{property.title}}</h4>
+                                        <ul>
+                                            <li><i class="fa fa-map-marker"></i>{{property.address}}</li>
+                                            <li><i class="fa fa-tag"></i>{{property.city}}</li>
+                                        </ul>
+                                        <h5 class="price">{{property.formattedPrice}}</h5>
+                                    </div>
+                                    <ul class="room-features">
+                                        <li>
+                                            <i class="fa fa-arrows"></i>
+                                            <p>{{property.floor}}</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>{{property.bedrooms}}</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bath"></i>
+                                            <p>{{property.rooms}}</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>{{property.surface}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                     {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section End -->
+
+    <!-- Video Section Begin -->
+    <div class="video-section set-bg" data-setbg="{{ asset('img/video-bg.jpg') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video-text">
+                        <a href="#" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                        <h4>Find The Perfect</h4>
+                        <h2>Real Estate Agent Near You</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Section End -->
+
+    <!-- Top Properties Section Begin -->
+    <div class="top-properties-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="properties-title">
+                        <div class="section-title">
+                            <span>Top Property For You</span>
+                            <h2>Top Properties</h2>
+                        </div>
+                        <a href={{ path('property.index') }}#" class="top-property-all">View All Property</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="top-properties-carousel owl-carousel">
+                {% for property in agencies %}
+                    <div class="single-top-properties">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="stp-pic">
+                                    {% if property.filename %}
+                                        <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}"
+                                             alt="card-img-top">
+                                    {% else %}
+                                        <img src="{{ '/images/properties/empty.jpg' | imagine_filter('medium') }}"
+                                             alt="card-img-top">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="stp-text">
+                                    <div class="s-text">For Sale</div>
+                                    <h2>{{ property.title }}</h2>
+                                    <div class="room-price">
+                                        <span>Start From:</span>
+                                        <h4>${{ property.formattedPrice }}</h4>
+                                    </div>
+                                    <div class="properties-location"><i class="icon_pin"></i> {{ property.address }}
+                                        Spa, NY
+                                    </div>
+                                    <p>{{ property.description }} </p>
+                                    <ul class="room-features">
+                                        <li>
+                                            <i class="fa fa-arrows"></i>
+                                            <p>{{ property.city }} </p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>{{ property.bedrooms }} </p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bath"></i>
+                                            <p>{{ property.rooms }} </p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-building"></i>
+                                            <p>{{ property.floor }} </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Top Properties Section End -->
+
+    <!-- Agent Section Begin -->
+    <section class="agent-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>We Are To Help You</span>
+                        <h2>Our Agents</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="agent-carousel owl-carousel">
+                    <div class="col-lg-12">
+                        <div class="single-agent">
+                            <div class="sa-pic">
+                                <img src="img/agent/agent-1.jpg" alt="">
+                                <div class="hover-social">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </div>
+                            </div>
+                            <h5>Matthew Robbins <span>Founder & Ceo</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-agent">
+                            <div class="sa-pic">
+                                <img src="img/agent/agent-2.jpg" alt="">
+                                <div class="hover-social">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </div>
+                            </div>
+                            <h5>Tillie Burns <span>Marketing Manager</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-agent">
+                            <div class="sa-pic">
+                                <img src="img/agent/agent-3.jpg" alt="">
+                                <div class="hover-social">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </div>
+                            </div>
+                            <h5>Derrick Lawson <span>Company Agents</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-agent">
+                            <div class="sa-pic">
+                                <img src="img/agent/agent-4.jpg" alt="">
+                                <div class="hover-social">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </div>
+                            </div>
+                            <h5>Clifford Colon <span>Saler Manager</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-agent">
+                            <div class="sa-pic">
+                                <img src="img/agent/agent-5.jpg" alt="">
+                                <div class="hover-social">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </div>
+                            </div>
+                            <h5>Clifford Colon <span>Saler Manager</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Agent Section End -->
+
+    <!-- Latest Blog Section Begin -->
+    <section class="blog-section latest-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Blog & Events</span>
+                        <h2>News Latest</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for property in agencies %}
+                    <div class="col-lg-4">
+                        <div class="single-blog-item">
+                            <div class="sb-pic">
+                                {% if property.filename %}
+                                    <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}"
+                                         alt="card-img-top">
+                                {% else %}
+                                    <img src="{{ '/images/properties/empty.jpg' | imagine_filter('medium') }}"
+                                         alt="card-img-top">
+                                {% endif %}
+                            </div>
+                            <div class="sb-text">
+                                <ul>
+                                    <li><i class="fa fa-user"></i> Adam Smith</li>
+                                    <li><i class="fa fa-clock-o"></i>{{ property.createdAt |  date }}</li>
+                                    <li class="card-text">{{ property.city }}</li>
+                                    <li class="card-text text-primary">{{ property.formattedPrice }}$</li>
+                                    <a class="btn btn-primary btn-sm" href="{{ path('property.show',
+                                        {id:property.id, slug:property.slug}) }}">{{ property.title }}
+                                    </a>
+                                </ul>
+                                <h4>{{ property.title }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Latest Blog Section End -->
+
+    <!-- Partner Carousel Section Begin -->
+    <div class="partner-section">
+        <div class="container">
+            <div class="partner-carousel owl-carousel">
+                <a href="#" class="partner-logo">
+                    <div class="partner-logo-tablecell">
+                        <img src="{{ asset('img/partner/partner-1.png') }}" alt="">
+                    </div>
+                </a>
+                <a href="#" class="partner-logo">
+                    <div class="partner-logo-tablecell">
+                        <img src="{{ asset('img/partner/partner-2.png') }}" alt="">
+                    </div>
+                </a>
+                <a href="#" class="partner-logo">
+                    <div class="partner-logo-tablecell">
+                        <img src="{{ asset('img/partner/partner-3.png') }}" alt="">
+                    </div>
+                </a>
+                <a href="#" class="partner-logo">
+                    <div class="partner-logo-tablecell">
+                        <img src="{{ asset('img/partner/partner-4.png') }}" alt="">
+                    </div>
+                </a>
+                <a href="#" class="partner-logo">
+                    <div class="partner-logo-tablecell">
+                        <img src="{{ asset('img/partner/partner-5.png') }}" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Carousel Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section set-bg" data-setbg="{{ asset('img/footer-bg.jpg') }}">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="footer-logo">
+                            <p>Subscribe our newsletter gor get notification about new updates.</p>
+                            <form action="#" class="newslatter-form">
+                                <input type="text" placeholder="Enter your email...">
+                                <button type="submit"><i class="fa fa-location-arrow"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="footer-widget">
+                            <h4>Property City</h4>
+                            <ul>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">Florida</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">New York</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">Washington</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">Los Angeles</a></li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">St Louis</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">Jacksonville</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">San Jose</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="#">San Diego</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer-widget">
+                            <h4>Social</h4>
+                            <ul class="social">
+                                <li><i class="ti-facebook"></i> <a href="#">Facebook</a></li>
+                                <li><i class="ti-instagram"></i> <a href="#">Instagram</a></li>
+                                <li><i class="ti-twitter-alt"></i> <a href="#">Twitter</a></li>
+                                <li><i class="ti-google"></i> <a href="#">Google+</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="footer-widget">
+                            <h4>Contact Us</h4>
+                            <ul class="contact-option">
+                                <li><i class="fa fa-map-marker"></i> 16 Creek Ave. Farming, NY</li>
+                                <li><i class="fa fa-phone"></i> (+88) 666 121 4321</li>
+                                <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
+                                <li><i class="fa fa-clock-o"></i> Mon - Sat, 08 AM - 06 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-text">
+                <p>
+                <p>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+                            href="https://colorlib.com" target="_blank">Colorlib</a>
+                </p>
+            </div>
         </div>
     </footer>
-
 {% endblock %}
